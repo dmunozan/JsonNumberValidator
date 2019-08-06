@@ -12,6 +12,9 @@ namespace JsonNumberValidator
 
         public static string IsValidJsonNumber(string introducedNumber)
         {
+            const int Zero = 48;
+            const int Nine = 57;
+
             if (introducedNumber == null)
             {
                 return "Invalid";
@@ -19,7 +22,7 @@ namespace JsonNumberValidator
 
             for (int i = 0; i < introducedNumber.Length; i++)
             {
-                if (introducedNumber[i] == 'A')
+                if (introducedNumber[i] < Zero || introducedNumber[i] > Nine)
                 {
                     return "Invalid";
                 }
