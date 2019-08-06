@@ -28,5 +28,11 @@ namespace JsonNumberValidator.Tests
         {
             Assert.Equal("Invalid", Program.IsValidJsonNumber("123A"));
         }
+
+        [Fact]
+        public void IsValidJsonNumberWhen1B35ShouldReturnInvalid()
+        {
+            Assert.Equal("Invalid", Program.IsValidJsonNumber("1B35"));
+        }
     }
 }
