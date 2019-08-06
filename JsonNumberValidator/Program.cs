@@ -20,7 +20,14 @@ namespace JsonNumberValidator
                 return "Invalid";
             }
 
-            for (int i = 0; i < introducedNumber.Length; i++)
+            int initialIndex = 0;
+
+            if (introducedNumber[0] == '-')
+            {
+                initialIndex++;
+            }
+
+            for (int i = initialIndex; i < introducedNumber.Length; i++)
             {
                 if (introducedNumber[i] < Zero || introducedNumber[i] > Nine)
                 {
