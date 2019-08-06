@@ -17,9 +17,12 @@ namespace JsonNumberValidator
                 return "Invalid";
             }
 
-            if (introducedNumber[0] == 'A')
+            for (int i = 0; i < introducedNumber.Length; i++)
             {
-                return "Invalid";
+                if (introducedNumber[i] == 'A')
+                {
+                    return "Invalid";
+                }
             }
 
             return "Valid";
