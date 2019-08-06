@@ -17,7 +17,7 @@ namespace JsonNumberValidator
                 return "Invalid";
             }
 
-            return "Invalid";
+            return "Valid";
         }
     }
 }
