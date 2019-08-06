@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonNumberValidator", "JsonNumberValidator.csproj", "{FDC9F29E-FD20-4178-AF52-EB3231545109}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonNumberValidator.Tests", "..\JsonNumberValidator.Tests\JsonNumberValidator.Tests.csproj", "{7D1ECB45-9407-4379-A9DE-3CFC06CEEFA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDC9F29E-FD20-4178-AF52-EB3231545109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC9F29E-FD20-4178-AF52-EB3231545109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC9F29E-FD20-4178-AF52-EB3231545109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC9F29E-FD20-4178-AF52-EB3231545109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D1ECB45-9407-4379-A9DE-3CFC06CEEFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1ECB45-9407-4379-A9DE-3CFC06CEEFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1ECB45-9407-4379-A9DE-3CFC06CEEFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1ECB45-9407-4379-A9DE-3CFC06CEEFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9658B9DD-7D50-4839-AECC-B599444F1F7D}
+	EndGlobalSection
+EndGlobal
