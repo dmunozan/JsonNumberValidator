@@ -24,21 +24,30 @@ namespace JsonNumberValidator
 
             int initialIndex = 0;
 
-            if (introducedNumber[0] == '-')
+            if (introducedNumber[initialIndex] == '-')
             {
                 initialIndex++;
             }
 
-            for (int index = initialIndex; index < introducedNumber.Length; index++)
+            int incrementIndex = 1;
+
+            for (int index = initialIndex; index < introducedNumber.Length; index += incrementIndex)
             {
+                incrementIndex = 1;
+
                 if (ValidNumberChars.IndexOf(introducedNumber[index]) == -1)
                 {
                     return "Invalid";
                 }
 
-                if (introducedNumber[index] == Zero && index == initialIndex && introducedNumber.Length > index + 1 && ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1)
+                if (introducedNumber[index] == Zero && index == initialIndex && introducedNumber.Length > index + 1)
                 {
-                    return "Invalid";
+                    if (ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1)
+                    {
+                        return "Invalid";
+                    }
+
+                    incrementIndex++;
                 }
             }
 
