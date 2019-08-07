@@ -7,13 +7,15 @@ namespace JsonNumberValidator
     {
         public static void Main()
         {
-            Console.WriteLine(Convert.ToInt32("012"));
+            Console.WriteLine(IsValidJsonNumber(Console.ReadLine()));
+            Console.Read();
         }
 
         public static string IsValidJsonNumber(string introducedNumber)
         {
             const int Zero = 48;
-            const int Nine = 57;
+            const int OnlyNumbers = 1;
+            const string ValidNumberChars = ".0123456789";
 
             if (introducedNumber == null)
             {
@@ -27,9 +29,14 @@ namespace JsonNumberValidator
                 initialIndex++;
             }
 
-            for (int i = initialIndex; i < introducedNumber.Length; i++)
+            for (int index = initialIndex; index < introducedNumber.Length; index++)
             {
-                if (introducedNumber[i] < Zero || introducedNumber[i] > Nine)
+                if (ValidNumberChars.IndexOf(introducedNumber[index]) == -1)
+                {
+                    return "Invalid";
+                }
+
+                if (introducedNumber[index] == Zero && index == initialIndex && introducedNumber.Length > index + 1 && ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1)
                 {
                     return "Invalid";
                 }
