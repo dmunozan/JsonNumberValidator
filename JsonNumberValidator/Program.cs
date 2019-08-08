@@ -66,7 +66,7 @@ namespace JsonNumberValidator
             const string ValidNumberChars = ".0123456789";
             incrementIndex = 1;
 
-            if (introducedNumber == null)
+            if (introducedNumber == null || index == 0)
             {
                 return false;
             }
