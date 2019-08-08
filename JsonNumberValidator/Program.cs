@@ -13,12 +13,14 @@ namespace JsonNumberValidator
 
         public static string IsValidJsonNumber(string introducedNumber)
         {
+            const string Valid = "Valid";
+            const string Invalid = "Invalid";
             const int OnlyNumbers = 1;
             const string ValidNumberChars = ".0123456789";
 
             if (introducedNumber == null)
             {
-                return "Invalid";
+                return Invalid;
             }
 
             int initialIndex = 0;
@@ -32,7 +34,7 @@ namespace JsonNumberValidator
             {
                 if (ValidNumberChars.IndexOf(introducedNumber[initialIndex + 1], OnlyNumbers) >= 1)
                 {
-                    return "Invalid";
+                    return Invalid;
                 }
 
                 initialIndex++;
@@ -46,11 +48,30 @@ namespace JsonNumberValidator
 
                 if (ValidNumberChars.IndexOf(introducedNumber[index]) == -1)
                 {
-                    return "Invalid";
+                    return Invalid;
+                }
+
+                if (introducedNumber[index] == '.' && !IsValidPointFormat(introducedNumber, index, out incrementIndex))
+                {
+                    return Invalid;
                 }
             }
 
-            return "Valid";
+            return Valid;
+        }
+
+        public static bool IsValidPointFormat(string introducedNumber, int index, out int incrementIndex)
+        {
+            const int OnlyNumbers = 1;
+            const string ValidNumberChars = ".0123456789";
+            incrementIndex = 1;
+
+            if (introducedNumber == null)
+            {
+                return false;
+            }
+
+            return ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1;
         }
     }
 }
