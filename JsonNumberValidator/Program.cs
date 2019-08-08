@@ -13,7 +13,6 @@ namespace JsonNumberValidator
 
         public static string IsValidJsonNumber(string introducedNumber)
         {
-            const int Zero = 48;
             const int OnlyNumbers = 1;
             const string ValidNumberChars = ".0123456789";
 
@@ -29,6 +28,16 @@ namespace JsonNumberValidator
                 initialIndex++;
             }
 
+            if (introducedNumber[initialIndex] == '0' && introducedNumber.Length > initialIndex + 1)
+            {
+                if (ValidNumberChars.IndexOf(introducedNumber[initialIndex + 1], OnlyNumbers) >= 1)
+                {
+                    return "Invalid";
+                }
+
+                initialIndex++;
+            }
+
             int incrementIndex = 1;
 
             for (int index = initialIndex; index < introducedNumber.Length; index += incrementIndex)
@@ -38,16 +47,6 @@ namespace JsonNumberValidator
                 if (ValidNumberChars.IndexOf(introducedNumber[index]) == -1)
                 {
                     return "Invalid";
-                }
-
-                if (introducedNumber[index] == Zero && index == initialIndex && introducedNumber.Length > index + 1)
-                {
-                    if (ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1)
-                    {
-                        return "Invalid";
-                    }
-
-                    incrementIndex++;
                 }
             }
 
