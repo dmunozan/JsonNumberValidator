@@ -71,7 +71,9 @@ namespace JsonNumberValidator
                 return false;
             }
 
-            return ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1;
+            incrementIndex++;
+
+            return introducedNumber.Length > index + 1 && ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1;
         }
     }
 }
