@@ -73,7 +73,7 @@ namespace JsonNumberValidator
 
             incrementIndex++;
 
-            return introducedNumber.Length > index + 1 && ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1;
+            return introducedNumber.Length > index + 1 && ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1 && introducedNumber.IndexOf('.', index + 1) == -1;
         }
     }
 }
