@@ -88,5 +88,41 @@ namespace JsonNumberValidator.Tests
         {
             Assert.False(Program.IsValidPointFormat("-0.2.", 2, out int incrementIndex));
         }
+
+        [Fact]
+        public void IsValidZeroFormatWhen0ShouldReturnTrue()
+        {
+            Assert.True(Program.IsValidZeroFormat("0", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidZeroFormatWhenNegative0ShouldReturnTrue()
+        {
+            Assert.True(Program.IsValidZeroFormat("-0", 1, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidZeroFormatWhen01ShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidZeroFormat("01", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidZeroFormatWhen0Point1ShouldReturnTrue()
+        {
+            Assert.True(Program.IsValidZeroFormat("0.1", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidZeroFormatWhen0LetterShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidZeroFormat("0R", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidZeroFormatWhen0eNegative1ShouldReturnTrue()
+        {
+            Assert.True(Program.IsValidZeroFormat("0e-1", 0, out int newIndex));
+        }
     }
 }
