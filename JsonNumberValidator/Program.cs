@@ -56,7 +56,7 @@ namespace JsonNumberValidator
 
         public static bool IsValidZeroFormat(string introducedNumber, int initialIndex, out int newIndex)
         {
-            const char Point = '.';
+            const string AllowedChars = ".e";
             newIndex = initialIndex;
 
             if (introducedNumber == null)
@@ -73,7 +73,7 @@ namespace JsonNumberValidator
 
             newIndex++;
 
-            return introducedNumber[initialIndex + 1] == Point;
+            return AllowedChars.IndexOf(introducedNumber[initialIndex + 1]) >= 0;
         }
 
         public static bool IsValidPointFormat(string introducedNumber, int index, out int incrementIndex)
