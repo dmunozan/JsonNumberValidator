@@ -71,9 +71,18 @@ namespace JsonNumberValidator
                 return false;
             }
 
-            incrementIndex++;
+            bool existNextChar = introducedNumber.Length > index + 1;
 
-            return introducedNumber.Length > index + 1 && ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1 && introducedNumber.IndexOf('.', index + 1) == -1;
+            if (!existNextChar)
+            {
+                return false;
+            }
+
+            incrementIndex++;
+            bool nextCharIsNumber = ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1;
+            bool noExistAnotherPoint = introducedNumber.IndexOf('.', index + 1) == -1;
+
+            return nextCharIsNumber && noExistAnotherPoint;
         }
     }
 }
