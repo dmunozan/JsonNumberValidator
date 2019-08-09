@@ -78,8 +78,7 @@ namespace JsonNumberValidator
 
         public static bool IsValidPointFormat(string introducedNumber, int index, out int incrementIndex)
         {
-            const int OnlyNumbers = 1;
-            const string ValidNumberChars = ".0123456789";
+            const string ValidNumberChars = "0123456789";
             incrementIndex = 1;
 
             if (introducedNumber == null || index == 0)
@@ -95,7 +94,7 @@ namespace JsonNumberValidator
             }
 
             incrementIndex++;
-            bool nextCharIsNumber = ValidNumberChars.IndexOf(introducedNumber[index + 1], OnlyNumbers) >= 1;
+            bool nextCharIsNumber = ValidNumberChars.IndexOf(introducedNumber[index + 1]) >= 1;
             bool noExistAnotherPoint = introducedNumber.IndexOf('.', index + 1) == -1;
 
             return nextCharIsNumber && noExistAnotherPoint;
