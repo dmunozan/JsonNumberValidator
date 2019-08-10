@@ -214,5 +214,23 @@ namespace JsonNumberValidator.Tests
         {
             Assert.False(Program.IsValidEFormat("e0", 0, out int newIndex));
         }
+
+        [Fact]
+        public void IsValidEFormatWhen1e0ShouldReturnTrue()
+        {
+            Assert.True(Program.IsValidEFormat("1e0", 1, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidEFormatWhen1eLetterShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidEFormat("1ef", 1, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidEFormatWhen1eNegativeShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidEFormat("1e-", 1, out int newIndex));
+        }
     }
 }
