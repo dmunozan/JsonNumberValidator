@@ -146,6 +146,7 @@ namespace JsonNumberValidator
 
         public static bool IsValidEFormat(string lowerCaseIntroducedNumber, int index, out int incrementIndex)
         {
+            const int OnlyNumbers = 2;
             const string AllowedChars = "-+0123456789";
             incrementIndex = 1;
 
@@ -160,16 +161,42 @@ namespace JsonNumberValidator
             }
 
             bool charEOnFirstPosition = index == 0;
-            bool existNextChar = lowerCaseIntroducedNumber.Length > index + 1;
+            bool existNextChar = lowerCaseIntroducedNumber.Length > index + incrementIndex;
 
             if (charEOnFirstPosition || !existNextChar)
             {
                 return false;
             }
 
+            bool nextCharIsNumber = AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + incrementIndex], OnlyNumbers) != -1;
+
+            if (nextCharIsNumber)
+            {
+                incrementIndex++;
+                return true;
+            }
+
+            bool isMinusOrPlus = AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + incrementIndex], 0, OnlyNumbers) != -1;
+
+            if (!isMinusOrPlus)
+            {
+                return false;
+            }
+
             incrementIndex++;
 
-            return AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + 1]) >= 0;
+            existNextChar = lowerCaseIntroducedNumber.Length > index + incrementIndex;
+
+            if (!existNextChar)
+            {
+                return false;
+            }
+
+            nextCharIsNumber = AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + incrementIndex], OnlyNumbers) != -1;
+
+            incrementIndex++;
+
+            return nextCharIsNumber;
         }
     }
 }
