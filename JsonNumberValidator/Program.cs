@@ -159,9 +159,10 @@ namespace JsonNumberValidator
                 return true;
             }
 
+            bool charEOnFirstPosition = index == 0;
             bool existNextChar = lowerCaseIntroducedNumber.Length > index + 1;
 
-            if (!existNextChar)
+            if (charEOnFirstPosition || !existNextChar)
             {
                 return false;
             }
