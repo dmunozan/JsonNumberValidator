@@ -118,7 +118,7 @@ namespace JsonNumberValidator
             }
 
             incrementIndex++;
-            bool nextCharIsNumber = AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + 1]) >= 1;
+            bool nextCharIsNumber = AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + 1]) >= 0;
             bool noExistAnotherPoint = lowerCaseIntroducedNumber.IndexOf('.', index + 1) == -1;
 
             return nextCharIsNumber && noExistAnotherPoint;
