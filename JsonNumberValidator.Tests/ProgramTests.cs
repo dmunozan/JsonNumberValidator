@@ -54,6 +54,12 @@ namespace JsonNumberValidator.Tests
         }
 
         [Fact]
+        public void IsValidJsonNumberWhenNegativePointShouldReturnInvalid()
+        {
+            Assert.Equal("Invalid", Program.IsValidJsonNumber("-."));
+        }
+
+        [Fact]
         public void IsValidJsonNumberWhen0point2ShouldReturnValid()
         {
             Assert.Equal("Valid", Program.IsValidJsonNumber("0.2"));
@@ -129,6 +135,42 @@ namespace JsonNumberValidator.Tests
         public void IsValidZeroFormatWhen0eNegative1ShouldReturnTrue()
         {
             Assert.True(Program.IsValidZeroFormat("0e-1", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidMinusSignFormatWhenNegativeShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidMinusSignFormat("-", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidMinusSignFormatWhenNegative0ShouldReturnTrue()
+        {
+            Assert.True(Program.IsValidMinusSignFormat("-0", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidMinusSignFormatWhenNegativePointShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidMinusSignFormat("-.", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidMinusSignFormatWhenNegativeEShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidMinusSignFormat("-e", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidMinusSignFormatWhenNegativeLetterShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidMinusSignFormat("-r", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidMinusSignFormatWhenNegativePositiveShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidMinusSignFormat("-+", 0, out int newIndex));
         }
     }
 }
