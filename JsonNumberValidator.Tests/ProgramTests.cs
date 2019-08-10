@@ -78,6 +78,18 @@ namespace JsonNumberValidator.Tests
         }
 
         [Fact]
+        public void IsValidJsonNumberWhen0point2pointShouldReturnInvalid()
+        {
+            Assert.Equal("Invalid", Program.IsValidJsonNumber("0.2."));
+        }
+
+        [Fact]
+        public void IsValidJsonNumberWhen1e0ShouldReturnValid()
+        {
+            Assert.Equal("Valid", Program.IsValidJsonNumber("1e0"));
+        }
+
+        [Fact]
         public void IsValidPointFormatWhen0pointpoint2ShouldReturnFalse()
         {
             Assert.False(Program.IsValidPointFormat("0..2", 1, out int incrementIndex));
