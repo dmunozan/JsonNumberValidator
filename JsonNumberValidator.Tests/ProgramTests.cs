@@ -232,5 +232,17 @@ namespace JsonNumberValidator.Tests
         {
             Assert.False(Program.IsValidEFormat("1e-", 1, out int newIndex));
         }
+
+        [Fact]
+        public void IsValidEFormatWhen1Point1ePositive5ShouldReturnTrue()
+        {
+            Assert.True(Program.IsValidEFormat("1.1e+5", 3, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidEFormatWhen1Point1ePositive5eShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidEFormat("1.1e+5e", 3, out int newIndex));
+        }
     }
 }
