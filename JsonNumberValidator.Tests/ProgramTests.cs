@@ -202,5 +202,17 @@ namespace JsonNumberValidator.Tests
         {
             Assert.False(Program.IsValidMinusSignFormat("-+", 0, out int newIndex));
         }
+
+        [Fact]
+        public void IsValidEFormatWheneShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidEFormat("e", 0, out int newIndex));
+        }
+
+        [Fact]
+        public void IsValidEFormatWhene0ShouldReturnFalse()
+        {
+            Assert.False(Program.IsValidEFormat("e0", 0, out int newIndex));
+        }
     }
 }
