@@ -168,6 +168,13 @@ namespace JsonNumberValidator
                 return false;
             }
 
+            bool existAnotherE = lowerCaseIntroducedNumber.IndexOf('e', index + incrementIndex) >= 0;
+
+            if (existAnotherE)
+            {
+                return false;
+            }
+
             bool nextCharIsNumber = AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + incrementIndex], OnlyNumbers) != -1;
 
             if (nextCharIsNumber)
