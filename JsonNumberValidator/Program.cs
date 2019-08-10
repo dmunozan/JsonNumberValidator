@@ -49,6 +49,11 @@ namespace JsonNumberValidator
                 {
                     return Invalid;
                 }
+
+                if (!IsValidEFormat(lowerCaseIntroducedNumber, index, out incrementIndex))
+                {
+                    return Invalid;
+                }
             }
 
             return Valid;
@@ -137,6 +142,33 @@ namespace JsonNumberValidator
             bool noExistAnotherPoint = lowerCaseIntroducedNumber.IndexOf('.', index + 1) == -1;
 
             return nextCharIsNumber && noExistAnotherPoint;
+        }
+
+        public static bool IsValidEFormat(string lowerCaseIntroducedNumber, int index, out int incrementIndex)
+        {
+            const string AllowedChars = "-+0123456789";
+            incrementIndex = 1;
+
+            if (lowerCaseIntroducedNumber == null)
+            {
+                return false;
+            }
+
+            if (lowerCaseIntroducedNumber[index] != 'e')
+            {
+                return true;
+            }
+
+            bool existNextChar = lowerCaseIntroducedNumber.Length > index + 1;
+
+            if (!existNextChar)
+            {
+                return false;
+            }
+
+            incrementIndex++;
+
+            return AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + 1]) >= 0;
         }
     }
 }
