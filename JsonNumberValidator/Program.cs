@@ -22,30 +22,32 @@ namespace JsonNumberValidator
                 return Invalid;
             }
 
+            string lowerCaseIntroducedNumber = introducedNumber.ToLower();
+
             int initialIndex = 0;
 
-            if (introducedNumber[initialIndex] == '-' && !IsValidMinusSignFormat(introducedNumber, initialIndex, out initialIndex))
+            if (lowerCaseIntroducedNumber[initialIndex] == '-' && !IsValidMinusSignFormat(lowerCaseIntroducedNumber, initialIndex, out initialIndex))
             {
                 return Invalid;
             }
 
-            if (introducedNumber[initialIndex] == '0' && !IsValidZeroFormat(introducedNumber, initialIndex, out initialIndex))
+            if (lowerCaseIntroducedNumber[initialIndex] == '0' && !IsValidZeroFormat(lowerCaseIntroducedNumber, initialIndex, out initialIndex))
             {
                 return Invalid;
             }
 
             int incrementIndex;
 
-            for (int index = initialIndex; index < introducedNumber.Length; index += incrementIndex)
+            for (int index = initialIndex; index < lowerCaseIntroducedNumber.Length; index += incrementIndex)
             {
                 incrementIndex = 1;
 
-                if (ValidNumberChars.IndexOf(introducedNumber[index]) == -1)
+                if (ValidNumberChars.IndexOf(lowerCaseIntroducedNumber[index]) == -1)
                 {
                     return Invalid;
                 }
 
-                if (introducedNumber[index] == '.' && !IsValidPointFormat(introducedNumber, index, out incrementIndex))
+                if (lowerCaseIntroducedNumber[index] == '.' && !IsValidPointFormat(lowerCaseIntroducedNumber, index, out incrementIndex))
                 {
                     return Invalid;
                 }
