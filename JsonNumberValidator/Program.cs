@@ -15,7 +15,7 @@ namespace JsonNumberValidator
         {
             const string Valid = "Valid";
             const string Invalid = "Invalid";
-            const string ValidNumberChars = ".0123456789";
+            const string ValidNumberChars = ".e0123456789";
 
             if (string.IsNullOrEmpty(introducedNumber))
             {
