@@ -24,9 +24,9 @@ namespace JsonNumberValidator
 
             int initialIndex = 0;
 
-            if (introducedNumber[initialIndex] == '-')
+            if (introducedNumber[initialIndex] == '-' && !IsValidMinusSignFormat(introducedNumber, initialIndex, out initialIndex))
             {
-                initialIndex++;
+                return Invalid;
             }
 
             if (introducedNumber[initialIndex] == '0' && !IsValidZeroFormat(introducedNumber, initialIndex, out initialIndex))
@@ -34,7 +34,7 @@ namespace JsonNumberValidator
                 return Invalid;
             }
 
-            int incrementIndex = 1;
+            int incrementIndex;
 
             for (int index = initialIndex; index < introducedNumber.Length; index += incrementIndex)
             {
@@ -52,6 +52,28 @@ namespace JsonNumberValidator
             }
 
             return Valid;
+        }
+
+        public static bool IsValidMinusSignFormat(string introducedNumber, int initialIndex, out int newIndex)
+        {
+            const string ValidNumberChars = "0123456789";
+            newIndex = initialIndex;
+
+            if (introducedNumber == null)
+            {
+                return false;
+            }
+
+            bool existNextChar = introducedNumber.Length > newIndex + 1;
+
+            if (!existNextChar)
+            {
+                return false;
+            }
+
+            newIndex++;
+
+            return ValidNumberChars.IndexOf(introducedNumber[initialIndex + 1]) >= 0;
         }
 
         public static bool IsValidZeroFormat(string introducedNumber, int initialIndex, out int newIndex)
