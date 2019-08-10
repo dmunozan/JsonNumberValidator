@@ -169,8 +169,9 @@ namespace JsonNumberValidator
             }
 
             bool existAnotherE = lowerCaseIntroducedNumber.IndexOf('e', index + incrementIndex) >= 0;
+            bool existPointInFront = lowerCaseIntroducedNumber.IndexOf('.', index + incrementIndex) >= 0;
 
-            if (existAnotherE)
+            if (existAnotherE || existPointInFront)
             {
                 return false;
             }
