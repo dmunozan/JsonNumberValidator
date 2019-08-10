@@ -26,12 +26,12 @@ namespace JsonNumberValidator
 
             int initialIndex = 0;
 
-            if (lowerCaseIntroducedNumber[initialIndex] == '-' && !IsValidMinusSignFormat(lowerCaseIntroducedNumber, initialIndex, out initialIndex))
+            if (!IsValidMinusSignFormat(lowerCaseIntroducedNumber, initialIndex, out initialIndex))
             {
                 return Invalid;
             }
 
-            if (lowerCaseIntroducedNumber[initialIndex] == '0' && !IsValidZeroFormat(lowerCaseIntroducedNumber, initialIndex, out initialIndex))
+            if (!IsValidZeroFormat(lowerCaseIntroducedNumber, initialIndex, out initialIndex))
             {
                 return Invalid;
             }
@@ -40,14 +40,12 @@ namespace JsonNumberValidator
 
             for (int index = initialIndex; index < lowerCaseIntroducedNumber.Length; index += incrementIndex)
             {
-                incrementIndex = 1;
-
                 if (AllowedJsonNumberChars.IndexOf(lowerCaseIntroducedNumber[index]) == -1)
                 {
                     return Invalid;
                 }
 
-                if (lowerCaseIntroducedNumber[index] == '.' && !IsValidPointFormat(lowerCaseIntroducedNumber, index, out incrementIndex))
+                if (!IsValidPointFormat(lowerCaseIntroducedNumber, index, out incrementIndex))
                 {
                     return Invalid;
                 }
@@ -64,6 +62,11 @@ namespace JsonNumberValidator
             if (lowerCaseIntroducedNumber == null)
             {
                 return false;
+            }
+
+            if (lowerCaseIntroducedNumber[initialIndex] != '-')
+            {
+                return true;
             }
 
             bool existNextChar = lowerCaseIntroducedNumber.Length > newIndex + 1;
@@ -88,14 +91,19 @@ namespace JsonNumberValidator
                 return false;
             }
 
-            bool existNextChar = lowerCaseIntroducedNumber.Length > newIndex + 1;
-
-            if (!existNextChar)
+            if (lowerCaseIntroducedNumber[initialIndex] != '0')
             {
                 return true;
             }
 
             newIndex++;
+
+            bool existNextChar = lowerCaseIntroducedNumber.Length > newIndex;
+
+            if (!existNextChar)
+            {
+                return true;
+            }
 
             return AllowedChars.IndexOf(lowerCaseIntroducedNumber[initialIndex + 1]) >= 0;
         }
@@ -105,19 +113,26 @@ namespace JsonNumberValidator
             const string AllowedChars = "0123456789";
             incrementIndex = 1;
 
-            if (lowerCaseIntroducedNumber == null || index == 0)
+            if (lowerCaseIntroducedNumber == null)
             {
                 return false;
             }
 
+            if (lowerCaseIntroducedNumber[index] != '.')
+            {
+                return true;
+            }
+
+            bool pointOnFirstPosition = index == 0;
             bool existNextChar = lowerCaseIntroducedNumber.Length > index + 1;
 
-            if (!existNextChar)
+            if (pointOnFirstPosition || !existNextChar)
             {
                 return false;
             }
 
             incrementIndex++;
+
             bool nextCharIsNumber = AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + 1]) >= 0;
             bool noExistAnotherPoint = lowerCaseIntroducedNumber.IndexOf('.', index + 1) == -1;
 
