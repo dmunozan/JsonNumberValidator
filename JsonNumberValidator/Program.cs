@@ -15,7 +15,7 @@ namespace JsonNumberValidator
         {
             const string Valid = "Valid";
             const string Invalid = "Invalid";
-            const string ValidNumberChars = ".e0123456789";
+            const string AllowedJsonNumberChars = ".e0123456789";
 
             if (string.IsNullOrEmpty(introducedNumber))
             {
@@ -42,7 +42,7 @@ namespace JsonNumberValidator
             {
                 incrementIndex = 1;
 
-                if (ValidNumberChars.IndexOf(lowerCaseIntroducedNumber[index]) == -1)
+                if (AllowedJsonNumberChars.IndexOf(lowerCaseIntroducedNumber[index]) == -1)
                 {
                     return Invalid;
                 }
@@ -56,17 +56,17 @@ namespace JsonNumberValidator
             return Valid;
         }
 
-        public static bool IsValidMinusSignFormat(string introducedNumber, int initialIndex, out int newIndex)
+        public static bool IsValidMinusSignFormat(string lowerCaseIntroducedNumber, int initialIndex, out int newIndex)
         {
-            const string ValidNumberChars = "0123456789";
+            const string AllowedChars = "0123456789";
             newIndex = initialIndex;
 
-            if (introducedNumber == null)
+            if (lowerCaseIntroducedNumber == null)
             {
                 return false;
             }
 
-            bool existNextChar = introducedNumber.Length > newIndex + 1;
+            bool existNextChar = lowerCaseIntroducedNumber.Length > newIndex + 1;
 
             if (!existNextChar)
             {
@@ -75,20 +75,20 @@ namespace JsonNumberValidator
 
             newIndex++;
 
-            return ValidNumberChars.IndexOf(introducedNumber[initialIndex + 1]) >= 0;
+            return AllowedChars.IndexOf(lowerCaseIntroducedNumber[initialIndex + 1]) >= 0;
         }
 
-        public static bool IsValidZeroFormat(string introducedNumber, int initialIndex, out int newIndex)
+        public static bool IsValidZeroFormat(string lowerCaseIntroducedNumber, int initialIndex, out int newIndex)
         {
             const string AllowedChars = ".e";
             newIndex = initialIndex;
 
-            if (introducedNumber == null)
+            if (lowerCaseIntroducedNumber == null)
             {
                 return false;
             }
 
-            bool existNextChar = introducedNumber.Length > newIndex + 1;
+            bool existNextChar = lowerCaseIntroducedNumber.Length > newIndex + 1;
 
             if (!existNextChar)
             {
@@ -97,20 +97,20 @@ namespace JsonNumberValidator
 
             newIndex++;
 
-            return AllowedChars.IndexOf(introducedNumber[initialIndex + 1]) >= 0;
+            return AllowedChars.IndexOf(lowerCaseIntroducedNumber[initialIndex + 1]) >= 0;
         }
 
-        public static bool IsValidPointFormat(string introducedNumber, int index, out int incrementIndex)
+        public static bool IsValidPointFormat(string lowerCaseIntroducedNumber, int index, out int incrementIndex)
         {
-            const string ValidNumberChars = "0123456789";
+            const string AllowedChars = "0123456789";
             incrementIndex = 1;
 
-            if (introducedNumber == null || index == 0)
+            if (lowerCaseIntroducedNumber == null || index == 0)
             {
                 return false;
             }
 
-            bool existNextChar = introducedNumber.Length > index + 1;
+            bool existNextChar = lowerCaseIntroducedNumber.Length > index + 1;
 
             if (!existNextChar)
             {
@@ -118,8 +118,8 @@ namespace JsonNumberValidator
             }
 
             incrementIndex++;
-            bool nextCharIsNumber = ValidNumberChars.IndexOf(introducedNumber[index + 1]) >= 1;
-            bool noExistAnotherPoint = introducedNumber.IndexOf('.', index + 1) == -1;
+            bool nextCharIsNumber = AllowedChars.IndexOf(lowerCaseIntroducedNumber[index + 1]) >= 1;
+            bool noExistAnotherPoint = lowerCaseIntroducedNumber.IndexOf('.', index + 1) == -1;
 
             return nextCharIsNumber && noExistAnotherPoint;
         }
